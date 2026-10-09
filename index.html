@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="description" content="Weather App - Cek cuaca terkini dengan OpenWeatherMap API" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="format-detection" content="telephone=no" />
+  
+  <title>Weather App | Cek Cuaca Terkini</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://openweathermap.org/img/wn/10d.png" />
+</head>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">🌤️ Weather App</h1>
+      <p class="app-subtitle">Cek cuaca terkini di kota mana pun</p>
+    </header>
+
+    <!-- Search Form -->
+    <form id="search-form" class="search-form" autocomplete="off">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          id="city-input"
+          class="search-input"
+          placeholder="Masukkan nama kota..."
+          aria-label="Nama kota"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="search-btn" class="search-btn" aria-label="Cari">
+          <span class="btn-text">Cari</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+      </div>
+      <!-- Unit Toggle -->
+      <div class="unit-toggle" role="group" aria-label="Satuan suhu">
+        <button type="button" class="unit-btn active" data-unit="metric">°C</button>
+        <button type="button" class="unit-btn" data-unit="imperial">°F</button>
+      </div>
+    </form>
+
+    <!-- History Pencarian -->
+    <section class="history-section" id="history-section" hidden>
+      <div class="history-header">
+        <h2 class="history-title">🕘 Riwayat Pencarian</h2>
+        <button type="button" id="clear-history" class="clear-history-btn">Hapus</button>
+      </div>
+      <div class="history-list" id="history-list"></div>
+    </section>
+
+    <!-- Loading State -->
+    <div class="loading" id="loading" role="status" aria-live="polite" hidden>
+      <div class="spinner"></div>
+      <p>Sedang memuat data cuaca...</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-box" id="error-box" role="alert" hidden>
+      <div class="error-icon">⚠️</div>
+      <p class="error-message" id="error-message"></p>
+    </div>
+
+    <!-- Main Weather Card -->
+    <main class="weather-main" id="weather-main" hidden>
+      <article class="weather-card">
+        <div class="weather-card-header">
+          <div>
+            <h2 class="city-name" id="city-name">-</h2>
+            <p class="city-country" id="city-country">-</p>
+          </div>
+          <img
+            src=""
+            alt=""
+            class="weather-icon"
+            id="weather-icon"
+          />
+        </div>
+
+        <div class="weather-temp-block">
+          <span class="temperature" id="temperature">--</span>
+          <span class="temp-unit" id="temp-unit">°C</span>
+        </div>
+
+        <p class="weather-desc" id="weather-desc">-</p>
+        <p class="feels-like" id="feels-like">Terasa seperti -</p>
+
+        <div class="weather-details">
+          <div class="detail-item">
+            <span class="detail-icon">💧</span>
+            <span class="detail-label">Kelembaban</span>
+            <span class="detail-value" id="humidity">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💨</span>
+            <span class="detail-label">Angin</span>
+            <span class="detail-value" id="wind">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">🌡️</span>
+            <span class="detail-label">Tekanan</span>
+            <span class="detail-value" id="pressure">-</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">👁️</span>
+            <span class="detail-label">Jarak Pandang</span>
+            <span class="detail-value" id="visibility">-</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Forecast 5 Hari -->
+      <section class="forecast-section">
+        <h3 class="forecast-title">📅 Prakiraan 5 Hari ke Depan</h3>
+        <div class="forecast-list" id="forecast-list"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Data cuaca oleh <a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeatherMap</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
